@@ -62,7 +62,7 @@ async function handleRequest(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const api = new Octokit();
   const headers = {
-    "Cache-Control": "public, max-age=3600, stale-while-revalidate=300",
+    "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
   };
 
   if (url.pathname === "/updates.xml") {
