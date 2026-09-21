@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "webextensions",
+  "main": "main.js",
+  "compatibility_date": "2023-07-01",
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "webextensions.andre4ik3.dev",
+      "custom_domain": true
+    }
+  ]
+}
