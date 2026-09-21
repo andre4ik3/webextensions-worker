@@ -55,7 +55,10 @@ function chromium(releases: Releases): string {
 }
 
 async function handleRequest(request: Request): Promise<Response> {
-  if (request.method !== "GET") return Response.json("error: only GET is allowed", { status: 405 });
+  if (request.method !== "GET" || request.headers.has("Upgrade")) {
+    return Response.json("error: only GET is allowed", { status: 405 });
+  }
+
   const url = new URL(request.url);
   const api = new Octokit();
   const headers = {
