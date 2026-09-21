@@ -3,6 +3,7 @@
   "specifiers": {
     "jsr:@std/xml@*": "0.2.0",
     "jsr:@std/xml@0.2": "0.2.0",
+    "npm:@octokit/plugin-rest-endpoint-methods@18": "18.0.0_@octokit+core@7.0.8",
     "npm:octokit@5": "5.0.5"
   },
   "jsr": {
@@ -166,6 +167,13 @@
         "@octokit/types@16.0.0"
       ]
     },
+    "@octokit/plugin-rest-endpoint-methods@18.0.0_@octokit+core@7.0.8": {
+      "integrity": "sha512-1wM02pQTHEarWYij0Bb4gu8X8fBy2FJdI4HMTSFDxtYLbOkJErGVx5ywmM6jeS8tOmC0iCiRLrn6YsSIecUeOQ==",
+      "dependencies": [
+        "@octokit/core",
+        "@octokit/types@17.0.0"
+      ]
+    },
     "@octokit/plugin-retry@8.1.1_@octokit+core@7.0.8": {
       "integrity": "sha512-VCVvZ/R1+u3WuiBWpNavZ0mY4aaJNAsENrpBP9aLSR2QyOpQgd7DhM5j4AW7z4MQpnJYgwBPf0XqPQoNBRdQwg==",
       "dependencies": [
@@ -252,7 +260,7 @@
         "@octokit/oauth-app",
         "@octokit/plugin-paginate-graphql",
         "@octokit/plugin-paginate-rest@14.0.0_@octokit+core@7.0.8",
-        "@octokit/plugin-rest-endpoint-methods",
+        "@octokit/plugin-rest-endpoint-methods@17.0.0_@octokit+core@7.0.8",
         "@octokit/plugin-retry",
         "@octokit/plugin-throttling",
         "@octokit/request-error",
@@ -273,6 +281,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/xml@0.2",
+      "npm:@octokit/plugin-rest-endpoint-methods@18",
       "npm:octokit@5"
     ]
   }

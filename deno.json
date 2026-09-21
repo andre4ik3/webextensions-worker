@@ -4,6 +4,7 @@
     "dev": "deno serve --allow-net --watch src/main.ts"
   },
   "imports": {
+    "@octokit/plugin-rest-endpoint-methods": "npm:@octokit/plugin-rest-endpoint-methods@^18.0.0",
     "@std/xml": "jsr:@std/xml@^0.2.0",
     "octokit": "npm:octokit@5"
   }

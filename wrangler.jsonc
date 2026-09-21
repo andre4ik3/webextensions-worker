@@ -9,5 +9,8 @@
       "pattern": "webextensions.andre4ik3.dev",
       "custom_domain": true
     }
-  ]
+  ],
+  "cache": {
+    "enabled": true
+  }
 }
