@@ -1,4 +1,7 @@
 {
+  "fmt": {
+    "lineWidth": 120
+  },
   "tasks": {
     "build": "deno bundle src/main.ts --minify --platform=browser --output=main.js",
     "dev": "deno serve --allow-net --watch src/main.ts"

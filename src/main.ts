@@ -8,10 +8,10 @@ function firefox(releases: Releases): string {
   return JSON.stringify({
     addons: {
       "anubis-bypass@andre4ik3.dev": {
-        updates: releases.map(release => ({
+        updates: releases.map((release) => ({
           version: release.name,
-          update_link: release.assets.find(asset => asset.name === "extension.xpi")?.browser_download_url,
-          update_hash: release.assets.find(asset => asset.name === "extension.xpi")?.digest,
+          update_link: release.assets.find((asset) => asset.name === "extension.xpi")?.browser_download_url,
+          update_hash: release.assets.find((asset) => asset.name === "extension.xpi")?.digest,
         })),
       },
     },
@@ -45,7 +45,7 @@ function chromium(releases: Releases): string {
           "app",
           { appid: "hbocpnemmimnkcddekhpiogjigmjnemb" },
           [el("updatecheck", {
-            codebase: releases[0].assets.find(asset => asset.name === "extension.crx")?.browser_download_url,
+            codebase: releases[0].assets.find((asset) => asset.name === "extension.crx")?.browser_download_url,
             version: releases[0].name,
           })],
         ),

@@ -4,13 +4,13 @@
   "main": "main.js",
   "compatibility_date": "2023-07-01",
   "workers_dev": true,
+  "cache": {
+    "enabled": true
+  },
   "routes": [
     {
       "pattern": "webextensions.andre4ik3.dev",
       "custom_domain": true
     }
-  ],
-  "cache": {
-    "enabled": true
-  }
+  ]
 }
