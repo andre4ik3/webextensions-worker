@@ -2,17 +2,17 @@ import { Octokit } from "octokit";
 import { type RestEndpointMethodTypes } from "@octokit/plugin-rest-endpoint-methods";
 import { stringify, type XmlElement, type XmlNode } from "@std/xml";
 
-type Releases = RestEndpointMethodTypes["repos"]["listReleases"]["response"]["data"];
+type Release = RestEndpointMethodTypes["repos"]["getLatestRelease"]["response"]["data"];
 
-function firefox(releases: Releases): string {
+function firefox(release: Release): string {
   return JSON.stringify({
     addons: {
       "anubis-bypass@andre4ik3.dev": {
-        updates: releases.map((release) => ({
+        updates: [{
           version: release.name,
           update_link: release.assets.find((asset) => asset.name === "extension.xpi")?.browser_download_url,
           update_hash: release.assets.find((asset) => asset.name === "extension.xpi")?.digest,
-        })),
+        }],
       },
     },
   });
@@ -27,7 +27,7 @@ function el(name: string, attributes: Record<string, string> = {}, children: Xml
   };
 }
 
-function chromium(releases: Releases): string {
+function chromium(release: Release): string {
   return stringify({
     declaration: {
       type: "declaration",
@@ -45,8 +45,8 @@ function chromium(releases: Releases): string {
           "app",
           { appid: "hbocpnemmimnkcddekhpiogjigmjnemb" },
           [el("updatecheck", {
-            codebase: releases[0].assets.find((asset) => asset.name === "extension.crx")?.browser_download_url,
-            version: releases[0].name,
+            codebase: release.assets.find((asset) => asset.name === "extension.crx")?.browser_download_url,
+            version: release.name,
           })],
         ),
       ],
@@ -66,17 +66,17 @@ async function handleRequest(request: Request): Promise<Response> {
   };
 
   if (url.pathname === "/updates.xml") {
-    const releases = await api.rest.repos.listReleases({
+    const release = await api.rest.repos.getLatestRelease({
       owner: "andre4ik3",
       repo: "anubis-bypass",
     });
-    return new Response(chromium(releases.data), { headers });
+    return new Response(chromium(release.data), { headers });
   } else if (url.pathname === "/updates.json") {
-    const releases = await api.rest.repos.listReleases({
+    const release = await api.rest.repos.getLatestRelease({
       owner: "andre4ik3",
       repo: "anubis-bypass",
     });
-    return new Response(firefox(releases.data), { headers });
+    return new Response(firefox(release.data), { headers });
   } else {
     return Response.json("not found", { status: 404 });
   }
